@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* CreditClear — Navy / Gold / White palette — authority + trust */
+    --background: 214 50% 97%;
+    --foreground: 214 40% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 214 40% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 214 40% 10%;
+    --primary: 210 100% 29%;       /* deep navy #006494 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 87% 46%;       /* gold #D4A017 */
+    --secondary-foreground: 214 40% 10%;
+    --muted: 214 20% 93%;
+    --muted-foreground: 214 20% 45%;
+    --accent: 210 100% 29%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 20% 85%;
+    --input: 214 20% 85%;
+    --ring: 210 100% 29%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 214 40% 8%;
+    --foreground: 214 20% 90%;
+    --card: 214 35% 12%;
+    --card-foreground: 214 20% 90%;
+    --popover: 214 35% 12%;
+    --popover-foreground: 214 20% 90%;
+    --primary: 210 60% 55%;
+    --primary-foreground: 214 40% 8%;
+    --secondary: 45 70% 55%;
+    --secondary-foreground: 214 40% 8%;
+    --muted: 214 30% 18%;
+    --muted-foreground: 214 20% 55%;
+    --accent: 210 60% 55%;
+    --accent-foreground: 214 40% 8%;
+    --destructive: 0 60% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 20% 22%;
+    --input: 214 20% 22%;
+    --ring: 210 60% 55%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 {
+    font-family: 'DM Serif Display', Georgia, serif;
+  }
+}
+
+/* ── Custom utilities ── */
+.severity-high { @apply bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300; }
+.severity-medium { @apply bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300; }
+.severity-low { @apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300; }
+
+/* Step indicator */
+.step-active { @apply bg-primary text-white shadow-md; }
+.step-done { @apply bg-green-600 text-white; }
+.step-pending { @apply bg-muted text-muted-foreground; }
+
+/* Letter preview */
+.letter-text {
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+/* Pulse animation for scanning */
+@keyframes scan {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.scanning { animation: scan 1.5s ease-in-out infinite; }
