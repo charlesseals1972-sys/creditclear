@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "NODE_ENV=development tsx server/index.ts",
-    "build": "node script/build.mjs",
+    "build": "npm install --include=dev && node script/build.mjs",
     "start": "NODE_ENV=production node dist/index.cjs",
     "check": "tsc",
     "db:push": "drizzle-kit push",
@@ -103,7 +103,7 @@
     "tsx": "^4.20.5"
   },
   "engines": {
-    "node": ">=22.12.0"
+    "node": "22.x"
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.8"
