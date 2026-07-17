@@ -9,9 +9,9 @@ import { createServer } from "node:http";
 const app = express();
 const httpServer = createServer(app);
 
-// The client is now deployed separately on S3/CloudFront (app.creditclear.com),
+// The client is now deployed separately on S3/CloudFront (app.sealscreditsolutions.com),
 // so cross-origin requests to this API need to be explicitly allowed.
-const allowedOrigins = (process.env.CORS_ALLOWED_ORIGINS || "https://app.creditclear.com")
+const allowedOrigins = (process.env.CORS_ALLOWED_ORIGINS || "https://app.sealscreditsolutions.com")
   .split(",")
   .map((origin) => origin.trim());
 

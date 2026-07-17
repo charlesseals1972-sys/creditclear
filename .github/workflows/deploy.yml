@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies and build client + server
         run: npm run build
         env:
-          # Client (this workflow) is served from app.creditclear.com via S3/CloudFront.
+          # Client (this workflow) is served from app.sealscreditsolutions.com via S3/CloudFront.
           # Server keeps running separately on Railway at this URL.
           VITE_API_URL: https://sealscreditsolutions.com
 
