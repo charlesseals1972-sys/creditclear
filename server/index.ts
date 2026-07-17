@@ -1,12 +1,25 @@
 import "dotenv/config";
 import express, { Response, NextFunction } from 'express';
 import type { Request } from 'express';
+import cors from "cors";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "node:http";
 
 const app = express();
 const httpServer = createServer(app);
+
+// The client is now deployed separately on S3/CloudFront (app.creditclear.com),
+// so cross-origin requests to this API need to be explicitly allowed.
+const allowedOrigins = (process.env.CORS_ALLOWED_ORIGINS || "https://app.creditclear.com")
+  .split(",")
+  .map((origin) => origin.trim());
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+  }),
+);
 
 declare module "http" {
   interface IncomingMessage {

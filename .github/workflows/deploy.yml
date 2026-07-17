@@ -18,6 +18,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".node-version"
+          cache: "npm"
+
+      - name: Install dependencies and build client + server
+        run: npm run build
+        env:
+          # Client (this workflow) is served from app.creditclear.com via S3/CloudFront.
+          # Server keeps running separately on Railway at this URL.
+          VITE_API_URL: https://sealscreditsolutions.com
+
       - name: Configure AWS credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -28,7 +41,7 @@ jobs:
       - name: Verify assumed identity (optional sanity check)
         run: aws sts get-caller-identity
 
-      - name: Sync build output to S3
+      - name: Sync client build output to S3
         run: |
           aws s3 sync ./dist/public s3://creditclear-app \
             --delete \

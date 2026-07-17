@@ -1,6 +1,8 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
-export const API_BASE = "__PORT_5000__".startsWith("__") ? "" : "__PORT_5000__";
+// VITE_API_URL is set at build time (see .github/workflows/deploy.yml) to point
+// the statically-hosted client at the separately-deployed Railway API.
+export const API_BASE = import.meta.env.VITE_API_URL || "";
 
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
